@@ -59,25 +59,27 @@ export default class RegisterEmail extends Component {
     };
 
     render() {
-        const {navigate} = this.props.navigation;
         return(
             <View style={styles.container}>
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'Loading...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
+                <Text style={styles.header}> Add your E-mail </Text>
+                <TextInput style={styles.inputBox}
+                           onChangeText={(email) => this.setState({email})}
+                           underlineColorAndroid='rgba(0,0,0,0)'
+                           textContentType={"emailAddress"}
+                           placeholder="Email"
+                           placeholderTextColor = "#002f6c"
+                           selectionColor="#000"
+                           keyboardType={"email-address"}
+                           maxLength = {256}/>
+                <Button style={styles.button} onPress={this.validateEmail} title="Next"/>
+                <Button style={styles.button} onPress={() => this.props.navigation.navigate('Dashboard')} title="Go to Dashboard"/>
 
-
-
-
-
-
-
-
-
-                <Button onPress={this.validateEmail} title="Next"/>
-                <View style={styles.bottomBtn}>
-                <Button color='red' onPress={() => this.props.navigation.navigate('Dashboard')} title="Go to Dashboard"/>
-                </View>
             </View>
-
-
         )
     }
 }

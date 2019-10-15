@@ -14,9 +14,10 @@ export default class RegisterUsername extends Component {
     }
 
     validateUsername = async() => {
-        let reg = /\S+@\S+\.\S+/;
-        if(reg.test(this.state.username) === false){
-            alert(" Invalid Username. Valid Username Format : minimum 3 to 25 characters long,numbers,alphabets and '@' symbol ");
+        let LenCheckReg = new RegExp(/^.{3,25}$/);
+        let SplCharCheckReg = new RegExp(/^[-_@#0-9a-zA-Z]*$/);
+        if( ( LenCheckReg.test(this.state.username) ) && ( SplCharCheckReg.test(this.state.username) )  === false ){
+            alert(" Invalid Username. Valid Username Format : minimum 3 to 25 characters long; numbers,alphabets and '@' symbol are allowed ");
         }
         else{
             this.setState({spinner :true})
